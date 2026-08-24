@@ -16,29 +16,53 @@ if modulo == "Home":
 elif modulo == "Ejercicio 1":
   st.title("Ejercicio 1")
   st.write("Registro de Movimientos Financieros")
+    # Lista vacía para almacenar los movimientos
     movimientos = []
-    cantidad = st.number_input("¿Cuántos movimientos desea registrar?",
-        min_value=1,
-        step=1)
 
+    cantidad = st.number_input(
+        "¿Cuántos movimientos desea registrar?",
+        min_value=1,
+        step=1
+    )
+
+    # Crear los movimientos
     for i in range(int(cantidad)):
 
         st.subheader("Movimiento " + str(i + 1))
-        concepto = st.text_input("Concepto", key="concepto_" + str(i))
 
-        tipo = st.selectbox("Tipo de movimiento",["Ingreso", "Gasto"],key="tipo_" + str(i))
+        concepto = st.text_input(
+            "Concepto",
+            key="concepto_" + str(i)
+        )
 
-        valor = st.number_input("Valor",min_value=0.0,step=0.01,key="valor_" + str(i))
+        tipo = st.selectbox(
+            "Tipo de movimiento",
+            ["Ingreso", "Gasto"],
+            key="tipo_" + str(i)
+        )
 
-        movimiento = {"Concepto": concepto,"Tipo": tipo,"Valor": valor}
+        valor = st.number_input(
+            "Valor",
+            min_value=0.0,
+            step=0.01,
+            key="valor_" + str(i)
+        )
+
+        movimiento = {
+            "Concepto": concepto,
+            "Tipo": tipo,
+            "Valor": valor
+        }
 
         movimientos.append(movimiento)
 
+    # Botón para procesar los movimientos
     if st.button("Registrar movimientos"):
 
         total_ingresos = 0
         total_gastos = 0
 
+        # Recorrer la lista
         for movimiento in movimientos:
 
             if movimiento["Tipo"] == "Ingreso":
@@ -48,39 +72,53 @@ elif modulo == "Ejercicio 1":
                 total_gastos = total_gastos + movimiento["Valor"]
 
         saldo_final = total_ingresos - total_gastos
-        
 
+        # Mostrar tabla
         st.subheader("Movimientos registrados")
 
         st.dataframe(movimientos)
-        
 
+        # Mostrar resultados
         st.subheader("Resumen financiero")
 
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            st.metric("Total de ingresos",f"S/ {total_ingresos:,.2f}")
+            st.metric(
+                "Total de ingresos",
+                f"S/ {total_ingresos:,.2f}"
+            )
 
         with col2:
-            st.metric("Total de gastos",f"S/ {total_gastos:,.2f}")
+            st.metric(
+                "Total de gastos",
+                f"S/ {total_gastos:,.2f}"
+            )
 
         with col3:
-            st.metric("Saldo final",f"S/ {saldo_final:,.2f}")
+            st.metric(
+                "Saldo final",
+                f"S/ {saldo_final:,.2f}"
+            )
 
-
-        
+        # Evaluar el flujo de caja
         if saldo_final > 0:
 
-            st.success("El flujo de caja está a favor.")
+            st.success(
+                "El flujo de caja está a favor."
+            )
 
         elif saldo_final < 0:
 
-            st.error("El flujo de caja está en contra.")
+            st.error(
+                "El flujo de caja está en contra."
+            )
 
         else:
-            st.success("El flujo de caja está equilibrado.")
-            
+
+            st.success(
+                "El flujo de caja está equilibrado."
+            )
 
 elif modulo == "Ejercicio 2":
   st.title("Ejercicio 2")
