@@ -132,7 +132,7 @@ elif modulo == "Ejercicio 2":
 # EJERCICIO 3
 # --------------------------------------------------
 
-elif opcion == "Ejercicio 3":
+elif modulo == "Ejercicio 3":
 
     import pandas as pd
     from libreria_funciones_proyecto1 import calcular_ticket_promedio
