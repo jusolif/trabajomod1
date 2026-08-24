@@ -14,7 +14,7 @@ if modulo == "Home":
   st.write("Para este trabajo se usaron tecnologías como Google Colab, Python, GitHub y Streamlit")
 
 elif modulo == "Ejercicio 1":
-  st.title("Ejercicio 1")
+  st.title("Ejercicio 1 - Flujo de Caja")
   st.markdown("Esta pequeña aplicación de registros financieros permite indicar cuántos movimientos desea registrar, agregar un concepto, tipo de movimiento y un valor. Finalmente se mostrará un flujo de caja que indicará un valor positivo, negativo o equilibrado")
 
   movimientos = []
