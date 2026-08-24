@@ -15,7 +15,8 @@ if modulo == "Home":
 
 elif modulo == "Ejercicio 1":
   st.title("Ejercicio 1")
-  st.write("Registro de Movimientos Financieros")
+  st.markdown("Esta pequeña aplicación de registros financieros permite indicar cuántos movimientos desea registrar, agregar un concepto, tipo de movimiento y un valor.
+  Finalmente se mostrará un flujo de caja que indicará un valor positivo, negativo o equilibrado")
 
   movimientos = []
   cantidad = st.number_input("¿Cuántos movimientos desea registrar?",min_value=1,step=1)
