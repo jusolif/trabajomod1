@@ -127,10 +127,7 @@ elif modulo == "Ejercicio 2":
     st.subheader("Registros ingresados")
 
     st.dataframe(df)
-
-# --------------------------------------------------
-# EJERCICIO 3
-# --------------------------------------------------
+    
 
 elif modulo == "Ejercicio 3":
 
@@ -138,140 +135,8 @@ elif modulo == "Ejercicio 3":
     from libreria_funciones_proyecto1 import calcular_ticket_promedio
 
     st.title("Ejercicio 3 - Ticket Promedio")
-
-    st.markdown("""
-    ### Cálculo del Ticket Promedio
-
-    En este ejercicio se utilizará una función de una librería
-    desarrollada previamente para calcular el ticket promedio
-    por cliente.
-
-    El usuario ingresará las ventas totales y el número de clientes.
-    La aplicación ejecutará la función, mostrará el resultado y
-    almacenará un histórico de los cálculos realizados.
-    """)
-
-    # --------------------------------------------------
-    # CLASE
-    # --------------------------------------------------
-
-    class CalculadoraTicket:
-
-        def __init__(self):
-            self.__historial = []
-
-        def calcular(self, ventas, clientes):
-
-            resultado = calcular_ticket_promedio(
-                ventas,
-                clientes
-            )
-
-            return resultado
-
-        def agregar_historial(self, periodo, ventas, clientes, ticket):
-
-            registro = {
-                "Periodo": periodo,
-                "Ventas totales": ventas,
-                "Clientes": clientes,
-                "Ticket promedio": ticket
-            }
-
-            self.__historial.append(registro)
-
-        def obtener_historial(self):
-
-            return self.__historial
-
-    # --------------------------------------------------
-    # CREAR OBJETO
-    # --------------------------------------------------
-
-    if "calculadora_ticket" not in st.session_state:
-
-        st.session_state.calculadora_ticket = CalculadoraTicket()
-
-    calculadora = st.session_state.calculadora_ticket
-
-    # --------------------------------------------------
-    # SELECTOR DE FUNCIÓN
-    # --------------------------------------------------
-
-    funcion = st.selectbox(
-        "Seleccione la función:",
-        ["Ticket promedio"]
-    )
-
-    # --------------------------------------------------
-    # WIDGETS
-    # --------------------------------------------------
-
-    periodo = st.text_input(
-        "Periodo o descripción",
-        placeholder="Ejemplo: Enero 2026"
-    )
-
-    ventas = st.number_input(
-        "Ventas totales",
-        min_value=0.0,
-        step=100.0
-    )
-
-    clientes = st.number_input(
-        "Número de clientes",
-        min_value=1,
-        step=1
-    )
-
-    # --------------------------------------------------
-    # BOTÓN EJECUTAR
-    # --------------------------------------------------
-
-    if st.button("Ejecutar función"):
-
-        if funcion == "Ticket promedio":
-
-            resultado = calculadora.calcular(
-                ventas,
-                clientes
-            )
-
-            ticket = resultado["ticket_promedio"]
-
-            st.write(
-                "Resultado del Ticket Promedio:"
-            )
-
-            st.write(
-                f"S/ {ticket:,.2f}"
-            )
-
-            calculadora.agregar_historial(
-                periodo,
-                ventas,
-                clientes,
-                ticket
-            )
-
-    # --------------------------------------------------
-    # HISTÓRICO
-    # --------------------------------------------------
-
-    historial = calculadora.obtener_historial()
-
-    if len(historial) > 0:
-
-        st.subheader("Histórico de resultados")
-
-        df = pd.DataFrame(historial)
-
-        st.dataframe(
-            df,
-            use_container_width=True
-        )
-
-
+    
+  
  
 elif modulo == "Ejercicio 4":
   st.title("Ejercicio 4")
