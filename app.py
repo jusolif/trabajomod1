@@ -133,10 +133,14 @@ elif modulo == "Ejercicio 2":
 # EJERCICIO 3
 # --------------------------------------------------
 
+# --------------------------------------------------
+# EJERCICIO 3
+# --------------------------------------------------
+
 elif opcion == "Ejercicio 3":
 
     import pandas as pd
-    from 03 librería_funciones_proyecto1 import calcular_ticket_promedio
+    from libreria_funciones_proyecto1 import calcular_ticket_promedio
 
     st.title("Ejercicio 3 - Ticket Promedio")
 
@@ -271,7 +275,7 @@ elif opcion == "Ejercicio 3":
             df,
             use_container_width=True
         )
-  
+
   
 elif modulo == "Ejercicio 4":
   st.title("Ejercicio 4")
