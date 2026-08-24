@@ -84,7 +84,7 @@ elif modulo == "Ejercicio 2":
 
   st.title("Ejercicio 2 - Registro de productos")
 
-  st.markdown("Registro de productos mediante arrays de NumPy")
+  st.markdown("En esta pequeña aplicación, podrá registrar una categoría de compra, el valor de dicha compra y la cantidad. Finalmente podrá ver una tabla con la información proporcionada")
 
   nombres = np.array([])
   categorias = np.array([])
@@ -94,22 +94,13 @@ elif modulo == "Ejercicio 2":
 
   st.subheader("Datos del producto")
 
-  nombre = st.text_input(
-        "Nombre del producto")
+  nombre = st.text_input("Nombre del producto")
 
-  categoria = st.selectbox(
-        "Categoría",
-        ["Alimentos", "Bebidas", "Tecnología", "Ropa", "Otros"])
+  categoria = st.selectbox("Categoría",["Alimentos", "Bebidas", "Tecnología", "Ropa", "Otros"])
 
-  precio = st.number_input(
-        "Precio",
-        min_value=0.0,
-        step=0.01)
+  precio = st.number_input("Precio",min_value=0.0,step=0.01)
 
-  cantidad = st.number_input(
-        "Cantidad",
-        min_value=1,
-        step=1)
+  cantidad = st.number_input("Cantidad",min_value=1,step=1)
 
   total = precio * cantidad
 
@@ -117,6 +108,7 @@ elif modulo == "Ejercicio 2":
 
   
   if st.button("Agregar registro"):
+    
     nombres = np.append(nombres, nombre)
 
     categorias = np.append(categorias, categoria)
@@ -128,14 +120,7 @@ elif modulo == "Ejercicio 2":
     totales = np.append(totales, total)
 
    
-
-    datos = {
-            "Producto": nombres,
-            "Categoría": categorias,
-            "Precio": precios,
-            "Cantidad": cantidades,
-            "Total": totales
-        }
+    datos = {"Producto": nombres,"Categoría": categorias,"Precio": precios,"Cantidad": cantidades,"Total": totales}
 
     df = pd.DataFrame(datos)
 
