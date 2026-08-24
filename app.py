@@ -130,14 +130,9 @@ elif modulo == "Ejercicio 2":
     
 
 elif modulo == "Ejercicio 3":
-
-    import pandas as pd
-    from libreria_funciones_proyecto1 import calcular_ticket_promedio
-
-    st.title("Ejercicio 3 - Ticket Promedio")
-    
+  st.title("Ejercicio 3")
+  st.write("En esta sección se desarrollará el Ejercicio 3.")
   
- 
 elif modulo == "Ejercicio 4":
   st.title("Ejercicio 4")
   st.write("En esta sección se desarrollará el Ejercicio 4.")
