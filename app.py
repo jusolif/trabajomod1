@@ -65,7 +65,7 @@ elif modulo == "Ejercicio 1":
                 total_ingresos = total_ingresos + movimiento["Valor"]
 
       else:
-      total_gastos = total_gastos + movimiento["Valor"]
+                total_gastos = total_gastos + movimiento["Valor"]
 
     saldo_final = total_ingresos - total_gastos
 
