@@ -202,28 +202,27 @@ elif modulo == "Ejercicio 3":
 
       if funcion == "Ticket promedio":
 
-      resultado = calculadora.calcular(ventas,clientes)
+        resultado = calculadora.calcular(ventas,clientes)
 
-      ticket = resultado["ticket_promedio"]
+        ticket = resultado["ticket_promedio"]
 
-      st.write("Resultado del Ticket Promedio:")
+        st.write("Resultado del Ticket Promedio:")
 
-      st.write(f"S/ {ticket:,.2f}")
+        st.write(f"S/ {ticket:,.2f}")
 
-      calculadora.agregar_historial(
+        calculadora.agregar_historial(
                 periodo,
                 ventas,
                 clientes,
                 ticket)
 
-    # --------------------------------------------------
-    # MOSTRAR HISTÓRICO
-    # --------------------------------------------------
+        # --------------------------------------------------
+        # MOSTRAR HISTÓRICO
+         # --------------------------------------------------
 
-    historial = calculadora.obtener_historial()
+        historial = calculadora.obtener_historial()
 
     if len(historial) > 0:
-
       st.subheader("Histórico de resultados")
 
       df = pd.DataFrame(historial)
