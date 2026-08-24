@@ -57,10 +57,10 @@ elif modulo == "Ejercicio 1":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-            st.metric("Total de ingresos",f"S/ {total_ingresos:,.2f}")
+            st.metric("Ingresos Totales",f"S/ {total_ingresos:,.2f}")
 
     with col2:
-            st.metric("Total de gastos",f"S/ {total_gastos:,.2f}")
+            st.metric("Gastos totales",f"S/ {total_gastos:,.2f}")
 
     with col3:
             st.metric("Saldo final",f"S/ {saldo_final:,.2f}")
@@ -68,13 +68,13 @@ elif modulo == "Ejercicio 1":
     
 
     if saldo_final > 0:
-            st.success("El flujo de caja está a favor.")
+            st.success("Flujo de caja positivo")
 
     elif saldo_final < 0:
-            st.error("El flujo de caja está en contra.")
+            st.error("Flujo de caja negativo")
 
     else:
-            st.success("El flujo de caja está equilibrado.")
+            st.success("Flujo de caja equilibrado")
    
 
 elif modulo == "Ejercicio 2":
