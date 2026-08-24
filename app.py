@@ -1,15 +1,6 @@
 import streamlit as st
 
-modulo = st.sidebar.selectbox(
-    "Seleccione una sección:",
-    [
-        "Home",
-        "Ejercicio 1",
-        "Ejercicio 2",
-        "Ejercicio 3",
-        "Ejercicio 4"
-    ]
-)
+modulo = st.sidebar.selectbox("Seleccione una sección:",["Home","Ejercicio 1","Ejercicio 2","Ejercicio 3","Ejercicio 4"])
 
 if modulo == "Home":
   st.title("Proyecto Aplicado en Streamlit – Fundamentos de Programación ")
@@ -24,7 +15,72 @@ if modulo == "Home":
 
 elif modulo == "Ejercicio 1":
   st.title("Ejercicio 1")
-  st.write("En esta sección se desarrollará el Ejercicio 1.")
+  st.write("Registro de Movimientos Financieros")
+    movimientos = []
+    cantidad = st.number_input("¿Cuántos movimientos desea registrar?",
+        min_value=1,
+        step=1)
+
+    for i in range(int(cantidad)):
+
+        st.subheader("Movimiento " + str(i + 1))
+        concepto = st.text_input("Concepto", key="concepto_" + str(i))
+
+        tipo = st.selectbox("Tipo de movimiento",["Ingreso", "Gasto"],key="tipo_" + str(i))
+
+        valor = st.number_input("Valor",min_value=0.0,step=0.01,key="valor_" + str(i))
+
+        movimiento = {"Concepto": concepto,"Tipo": tipo,"Valor": valor}
+
+        movimientos.append(movimiento)
+
+    if st.button("Registrar movimientos"):
+
+        total_ingresos = 0
+        total_gastos = 0
+
+        for movimiento in movimientos:
+
+            if movimiento["Tipo"] == "Ingreso":
+                total_ingresos = total_ingresos + movimiento["Valor"]
+
+            else:
+                total_gastos = total_gastos + movimiento["Valor"]
+
+        saldo_final = total_ingresos - total_gastos
+        
+
+        st.subheader("Movimientos registrados")
+
+        st.dataframe(movimientos)
+        
+
+        st.subheader("Resumen financiero")
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.metric("Total de ingresos",f"S/ {total_ingresos:,.2f}")
+
+        with col2:
+            st.metric("Total de gastos",f"S/ {total_gastos:,.2f}")
+
+        with col3:
+            st.metric("Saldo final",f"S/ {saldo_final:,.2f}")
+
+
+        
+        if saldo_final > 0:
+
+            st.success("El flujo de caja está a favor.")
+
+        elif saldo_final < 0:
+
+            st.error("El flujo de caja está en contra.")
+
+        else:
+            st.success("El flujo de caja está equilibrado.")
+            
 
 elif modulo == "Ejercicio 2":
   st.title("Ejercicio 2")
