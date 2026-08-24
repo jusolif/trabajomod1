@@ -150,8 +150,9 @@ elif modulo == "Ejercicio 3":
 
     def __init__(self):self.__historial = []
 
-    def calcular(self, ventas, clientes):resultado = calcular_ticket_promedio(ventas, clientes)
-    return resultado
+    def calcular(self, ventas, clientes):
+      resultado = calcular_ticket_promedio(ventas, clientes)
+      return resultado
 
     def agregar_historial(self, periodo, ventas, clientes, ticket):registro = {"Periodo": periodo,"Ventas totales": ventas,"Clientes": clientes,"Ticket promedio": ticket}
     self.__historial.append(registro)
