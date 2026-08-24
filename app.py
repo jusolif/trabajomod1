@@ -203,9 +203,237 @@ elif modulo == "Ejercicio 3":
         st.dataframe(df,use_container_width=True)
 
   
+# --------------------------------------------------
+# EJERCICIO 4
+# --------------------------------------------------
+
 elif modulo == "Ejercicio 4":
-  st.title("Ejercicio 4")
-  st.write("En esta sección se desarrollará el Ejercicio 4.")
+
+    import pandas as pd
+    from libreria_clases_proyecto1 import EquipoMantenimiento
+
+    st.title("Ejercicio 4 - Gestión de Equipos de Mantenimiento")
+
+    st.markdown("""
+    ### CRUD de equipos de mantenimiento
+
+    En este ejercicio se utilizará la clase EquipoMantenimiento
+    de una librería externa.
+
+    La aplicación permitirá crear, consultar, actualizar y
+    eliminar registros de equipos de mantenimiento.
+
+    Para cada equipo se registrarán las horas de operación,
+    número de fallas y horas de reparación.
+    """)
+
+    # --------------------------------------------------
+    # LISTA PARA ALMACENAR LOS OBJETOS
+    # --------------------------------------------------
+
+    if "equipos" not in st.session_state:
+
+        st.session_state.equipos = []
+
+    # --------------------------------------------------
+    # MENÚ CRUD
+    # --------------------------------------------------
+
+    operacion = st.selectbox(
+        "Seleccione una operación:",
+        [
+            "Crear",
+            "Leer",
+            "Actualizar",
+            "Eliminar"
+        ]
+    )
+
+    # ==================================================
+    # CREAR
+    # ==================================================
+
+    if operacion == "Crear":
+
+        st.subheader("Crear nuevo equipo")
+
+        nombre = st.text_input(
+            "Nombre del equipo"
+        )
+
+        horas_operacion = st.number_input(
+            "Horas de operación",
+            min_value=1.0,
+            step=1.0
+        )
+
+        numero_fallas = st.number_input(
+            "Número de fallas",
+            min_value=1,
+            step=1
+        )
+
+        horas_reparacion = st.number_input(
+            "Horas de reparación",
+            min_value=0.0,
+            step=1.0
+        )
+
+        if st.button("Crear equipo"):
+
+            equipo = EquipoMantenimiento(
+                nombre,
+                horas_operacion,
+                numero_fallas,
+                horas_reparacion
+            )
+
+            st.session_state.equipos.append(equipo)
+
+            st.write("Equipo creado correctamente.")
+
+    # ==================================================
+    # LEER
+    # ==================================================
+
+    elif operacion == "Leer":
+
+        st.subheader("Equipos registrados")
+
+        registros = []
+
+        for equipo in st.session_state.equipos:
+
+            registros.append(
+                equipo.resumen()
+            )
+
+        if len(registros) > 0:
+
+            df = pd.DataFrame(registros)
+
+            st.dataframe(
+                df,
+                use_container_width=True
+            )
+
+        else:
+
+            st.write("No existen equipos registrados.")
+
+    # ==================================================
+    # ACTUALIZAR
+    # ==================================================
+
+    elif operacion == "Actualizar":
+
+        st.subheader("Actualizar equipo")
+
+        if len(st.session_state.equipos) > 0:
+
+            nombres = []
+
+            for equipo in st.session_state.equipos:
+
+                nombres.append(
+                    equipo.nombre_equipo
+                )
+
+            equipo_seleccionado = st.selectbox(
+                "Seleccione el equipo:",
+                nombres
+            )
+
+            posicion = nombres.index(
+                equipo_seleccionado
+            )
+
+            equipo = st.session_state.equipos[posicion]
+
+            nuevo_nombre = st.text_input(
+                "Nombre del equipo",
+                value=equipo.nombre_equipo
+            )
+
+            nuevas_horas = st.number_input(
+                "Horas de operación",
+                min_value=1.0,
+                value=float(equipo.horas_operacion),
+                step=1.0
+            )
+
+            nuevas_fallas = st.number_input(
+                "Número de fallas",
+                min_value=1,
+                value=int(equipo.numero_fallas),
+                step=1
+            )
+
+            nuevas_reparaciones = st.number_input(
+                "Horas de reparación",
+                min_value=0.0,
+                value=float(equipo.horas_reparacion),
+                step=1.0
+            )
+
+            if st.button("Actualizar equipo"):
+
+                equipo.nombre_equipo = nuevo_nombre
+
+                equipo.horas_operacion = nuevas_horas
+
+                equipo.numero_fallas = nuevas_fallas
+
+                equipo.horas_reparacion = nuevas_reparaciones
+
+                st.write(
+                    "Equipo actualizado correctamente."
+                )
+
+        else:
+
+            st.write("No existen equipos para actualizar.")
+
+    # ==================================================
+    # ELIMINAR
+    # ==================================================
+
+    elif operacion == "Eliminar":
+
+        st.subheader("Eliminar equipo")
+
+        if len(st.session_state.equipos) > 0:
+
+            nombres = []
+
+            for equipo in st.session_state.equipos:
+
+                nombres.append(
+                    equipo.nombre_equipo
+                )
+
+            equipo_seleccionado = st.selectbox(
+                "Seleccione el equipo:",
+                nombres
+            )
+
+            posicion = nombres.index(
+                equipo_seleccionado
+            )
+
+            if st.button("Eliminar equipo"):
+
+                st.session_state.equipos.pop(
+                    posicion
+                )
+
+                st.write(
+                    "Equipo eliminado correctamente."
+                )
+
+        else:
+
+            st.write("No existen equipos para eliminar.")
 
 
 
