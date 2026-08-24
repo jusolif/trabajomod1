@@ -1,1 +1,10 @@
 import streamlit as st
+st.title("Proyecto Aplicado en Streamlit – Fundamentos de Programación ")
+st.image("DMC.png",width=150)
+st.image("Python_logo.png",width=300)
+st.subheader("Julio Humberto Solis Flores")
+st.markdown("Módulo 1: Python Fundamentals")
+st.write("Ingeniero Industrial con experiencia en Business Intelligence")
+st.write("2026")
+st.write("Trabajo práctico número 1 para el curso de Especialización en Python for Analytics")
+st.write("Para este trabajo se usaron tecnologías como Google Colab, Python, GitHub y Streamlit")
