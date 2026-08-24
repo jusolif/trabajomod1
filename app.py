@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+from libreria_funciones_proyecto1 import calcular_ticket_promedio
 
 modulo = st.sidebar.selectbox("Seleccione una sección:",["Home","Ejercicio 1","Ejercicio 2","Ejercicio 3","Ejercicio 4"])
 
@@ -129,9 +131,6 @@ elif modulo == "Ejercicio 2":
     st.dataframe(df)
 
 elif modulo == "Ejercicio 3":
-  
-  import pandas as pd
-  from libreria_funciones_proyecto1 import calcular_ticket_promedio
 
   st.title("Ejercicio 3 - Ticket Promedio")
 
