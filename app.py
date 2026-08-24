@@ -129,49 +129,34 @@ elif modulo == "Ejercicio 2":
     st.dataframe(df)
 
 elif modulo == "Ejercicio 3":
+  
+  import pandas as pd
+  from libreria_funciones_proyecto1 import calcular_ticket_promedio
 
-   import pandas as pd
-    from libreria_funciones_proyecto1 import calcular_ticket_promedio
+  st.title("Ejercicio 3 - Ticket Promedio")
 
-    st.title("Ejercicio 3 - Ticket Promedio")
+  st.markdown("""
+  ### Cálculo del Ticket Promedio
 
-    st.markdown("""
-    ### Cálculo del Ticket Promedio
+  Esta aplicación permite calcular el ticket promedio
+  utilizando una función de la librería del proyecto.
 
-    Esta aplicación permite calcular el ticket promedio
-    utilizando una función de la librería del proyecto.
+  El usuario ingresará las ventas totales y el número
+  de clientes. El resultado será almacenado en un
+  histórico y mostrado en una tabla.
+  """)
 
-    El usuario ingresará las ventas totales y el número
-    de clientes. El resultado será almacenado en un
-    histórico y mostrado en una tabla.
-    """)
 
-    # --------------------------------------------------
-    # CLASE
-    # --------------------------------------------------
+  class CalculadoraTicket:
 
-    class CalculadoraTicket:
+    def __init__(self):self.__historial = []
 
-        def __init__(self):
-            self.__historial = []
+    def calcular(self, ventas, clientes):resultado = calcular_ticket_promedio(ventas, clientes)return resultado
 
-        def calcular(self, ventas, clientes):
-            resultado = calcular_ticket_promedio(ventas, clientes)
-            return resultado
+    def agregar_historial(self, periodo, ventas, clientes, ticket):registro = {"Periodo": periodo,"Ventas totales": ventas,"Clientes": clientes,"Ticket promedio": ticket}
+    self.__historial.append(registro)
 
-        def agregar_historial(self, periodo, ventas, clientes, ticket):
-
-            registro = {
-                "Periodo": periodo,
-                "Ventas totales": ventas,
-                "Clientes": clientes,
-                "Ticket promedio": ticket
-            }
-
-            self.__historial.append(registro)
-
-        def obtener_historial(self):
-            return self.__historial
+    def obtener_historial(self):return self.__historial
 
     # --------------------------------------------------
     # CREAR OBJETO
@@ -188,8 +173,7 @@ elif modulo == "Ejercicio 3":
 
     funcion = st.selectbox(
         "Seleccione la función:",
-        ["Ticket promedio"]
-    )
+        ["Ticket promedio"])
 
     # --------------------------------------------------
     # INGRESO DE DATOS
@@ -197,20 +181,17 @@ elif modulo == "Ejercicio 3":
 
     periodo = st.text_input(
         "Periodo o descripción",
-        placeholder="Ejemplo: Enero 2026"
-    )
+        placeholder="Ejemplo: Enero 2026")
 
     ventas = st.number_input(
         "Ventas totales",
         min_value=0.0,
-        step=100.0
-    )
+        step=100.0)
 
     clientes = st.number_input(
         "Número de clientes",
         min_value=1,
-        step=1
-    )
+        step=1)
 
     # --------------------------------------------------
     # EJECUTAR FUNCIÓN
@@ -218,25 +199,21 @@ elif modulo == "Ejercicio 3":
 
     if st.button("Ejecutar función"):
 
-        if funcion == "Ticket promedio":
+      if funcion == "Ticket promedio":
 
-            resultado = calculadora.calcular(
-                ventas,
-                clientes
-            )
+      resultado = calculadora.calcular(ventas,clientes)
 
-            ticket = resultado["ticket_promedio"]
+      ticket = resultado["ticket_promedio"]
 
-            st.write("Resultado del Ticket Promedio:")
+      st.write("Resultado del Ticket Promedio:")
 
-            st.write(f"S/ {ticket:,.2f}")
+      st.write(f"S/ {ticket:,.2f}")
 
-            calculadora.agregar_historial(
+      calculadora.agregar_historial(
                 periodo,
                 ventas,
                 clientes,
-                ticket
-            )
+                ticket)
 
     # --------------------------------------------------
     # MOSTRAR HISTÓRICO
@@ -246,17 +223,13 @@ elif modulo == "Ejercicio 3":
 
     if len(historial) > 0:
 
-        st.subheader("Histórico de resultados")
+      st.subheader("Histórico de resultados")
 
-        df = pd.DataFrame(historial)
+      df = pd.DataFrame(historial)
 
-        st.dataframe(
-            df,
-            use_container_width=True
-        )
+      st.dataframe(df,use_container_width=True)
 
  
-
 elif modulo == "Ejercicio 4":
   st.title("Ejercicio 4")
   st.write("En esta sección se desarrollará el Ejercicio 4.")
